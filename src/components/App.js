@@ -1,6 +1,7 @@
 // @flow
 import '../style/App.css';
 import InputBox from './InputBox';
+import QueriedLyrics from './QueriedLyrics';
 import React from 'react';
 
 type AppState = {
@@ -27,15 +28,17 @@ class App extends React.Component<{}, AppState> {
   }
 
   render(): any {
-    return (
-    <div className="App">
-      {
-        this.state.queried 
-        ? <InputBox submitHandler={this.searchHandler}/>
-        : <InputBox submitHandler={this.searchHandler}/>
-      }
-    </div>);
-  } 
+    if (this.state.queried && this.state.query) {
+      return (<div className="App">
+        <InputBox submitHandler={this.searchHandler} />
+        <QueriedLyrics query={this.state.query} />
+      </div>);
+    } else {
+      return (<div className="App">
+        <InputBox submitHandler={this.searchHandler} />
+      </div>);
+    }
+  }
 }
 
 export default App;
