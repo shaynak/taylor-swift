@@ -34,10 +34,9 @@ class InputBox extends React.Component<InputBoxProps, InputBoxState> {
       <div className="InputBox">
         <form onSubmit={this.handleSubmit}>
           <label>
-            Word:
-                  <input type="text" value={this.state.query} onChange={this.handleChange} />
+            <input className="queryBox" type="text" value={this.state.query} onChange={this.handleChange} />
           </label>
-          <input type="submit" value="Go" />
+          <input className="submitButton" type="submit" value="➔" />
         </form>
       </div>
     );

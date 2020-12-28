@@ -42,9 +42,9 @@ class SongLyric extends React.Component<SongLyricProps> {
             <div className="SongLyric">
                 <p>
                     {this.props.prev}
-                    <br />
-                    <span class="lyric" dangerouslySetInnerHTML={{ __html: this.boldQuery(this.props.lyric, this.props.query) }} />
-                    <br />
+                    {this.props.prev.length > 0 ? <br /> : ""}
+                    <span className="lyric" dangerouslySetInnerHTML={{ __html: this.boldQuery(this.props.lyric, this.props.query) }} />
+                    {this.props.next.length > 0 ? <br /> : ""}
                     {this.props.next}
                 </p>
                 {this.props.song}, <i>{this.props.album}</i>

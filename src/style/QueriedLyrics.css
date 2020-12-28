@@ -1,0 +1,12 @@
+hr {
+  border: 1px solid lavender;
+}
+
+.QueriedLyrics {
+  width: 60%;
+  position: absolute;
+  overflow: auto;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 3%;
+}

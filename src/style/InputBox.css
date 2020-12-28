@@ -1,3 +1,49 @@
 .InputBox {
-    text-align: center;
+  text-align: center;
+}
+
+input {
+  border: none;
+}
+
+.queryBox {
+  transition: 0.5s;
+  margin-top: 3%;
+  height: 20px;
+  width: 40%;
+  border: 2px solid gray;
+  border-radius: 20px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.queryBox:focus {
+  transition: 0.5s;
+  outline: none;
+  border-radius: 20px;
+  border-color: rgb(220, 220, 250);
+}
+
+.submitButton {
+  transition: 0.5s;
+  padding: 5px;
+  height: 30px;
+  font-size: 20px;
+  vertical-align: middle;
+  margin-left: 5px;
+  color: white;
+  background-color: gray;
+  border-radius: 20px;
+}
+
+.submitButton:hover {
+  transition: 0.5s;
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.submitButton:focus {
+  outline: none;
+  transition: 0.5s;
 }

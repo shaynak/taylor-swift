@@ -1,4 +1,5 @@
 // @flow
+import '../style/QueriedLyrics.css';
 import React from 'react';
 import SongLyric from './SongLyric';
 import { containsQuery } from './utils.js';
