@@ -1,6 +1,6 @@
 // @flow
 import '../style/SongLyric.css';
-import { containsQuery } from './utils.js';
+import { containsQuery, cleanLyric } from './utils.js';
 import React from 'react';
 
 type SongLyricProps = {
@@ -14,17 +14,27 @@ type SongLyricProps = {
 
 class SongLyric extends React.Component<SongLyricProps> {
     boldQuery(lyric: string, query: string): string {
-        const start = containsQuery(lyric, query);
-        // This case should never be hit, since a SongLyric 
-        // is only created if it contains the query
-        if (start === -1) {
-            return "";
-        }
-        const end = start + query.length + 1;
-        const left = this.props.lyric.substring(0, start);
-        const foundQuery = this.props.lyric.substring(start, end);
-        const right = this.props.lyric.substring(end);
-        return left + "<b>" + foundQuery + "</b>" + right;
+        lyric = cleanLyric(lyric);
+        query = cleanLyric(query);
+        let start: number, end: number;
+        let boldedLyric = "";
+        do {
+            start = containsQuery(lyric, query);
+            if (start === -1) {
+                return boldedLyric + lyric;
+            }
+            end = start + query.length;
+            // If not at the beginning, we need to shift start and end
+            // because containsQuery will return the index of the space
+            // before the start of the query
+            if (lyric.toLowerCase().charAt(0) !== query.toLowerCase().charAt(0)) {
+                start += 1;
+                end += 1;
+            }
+            boldedLyric = boldedLyric + lyric.substring(0, start) + '<span class="query">' + lyric.substring(start, end) + "</span>";
+            lyric = lyric.substring(end);
+        } while (lyric.length > 0);
+        return boldedLyric;
     }
 
     render(): any {

@@ -21,7 +21,7 @@ class InputBox extends React.Component<InputBoxProps, InputBoxState> {
   }
 
   handleChange(event: any) {
-    this.setState({ query: event.target.value.trim() });
+    this.setState({ query: event.target.value });
   }
 
   handleSubmit(event: any) {
