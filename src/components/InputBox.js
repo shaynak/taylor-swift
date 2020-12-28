@@ -2,11 +2,14 @@
 import '../style/InputBox.css';
 import React from 'react';
 
+type InputBoxProps = {
+  submitHandler: (string)=>void,
+}
 type InputBoxState = {
   query: ?string,
 }
 
-class InputBox extends React.Component<{}, InputBoxState> {
+class InputBox extends React.Component<InputBoxProps, InputBoxState> {
   constructor() {
     super();
     this.state = {
@@ -22,7 +25,7 @@ class InputBox extends React.Component<{}, InputBoxState> {
   }
 
   handleSubmit(event: any) {
-    console.log(event.target.value); // TODO(shayna): Replace this line with actual logic
+    this.props.submitHandler(event.target.value);
     event.preventDefault();
   }
 
