@@ -1,5 +1,7 @@
 .InputBox {
   text-align: center;
+  position: absolute;
+  width: 100%;
 }
 
 input {
@@ -8,7 +10,7 @@ input {
 
 .queryBox {
   transition: 0.5s;
-  margin-top: 3%;
+  margin-top: 2%;
   height: 20px;
   width: 40%;
   border: 2px solid gray;

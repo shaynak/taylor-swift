@@ -1,8 +1,10 @@
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
@@ -23,4 +25,19 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: lightgray;
   transition: 1s;
+}
+
+.title-text {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 300;
+  font-size: 72px;
+  background-color: lavender;
+}
+
+.top-text {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 300;
+  font-size: 32px;
+  background-color: lavender;
+  transition: 0.5s;
 }

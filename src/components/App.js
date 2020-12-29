@@ -1,5 +1,6 @@
 // @flow
 import '../style/App.css';
+import '../style/index.css';
 import InputBox from './InputBox';
 import QueriedLyrics from './QueriedLyrics';
 import React from 'react';
@@ -30,11 +31,13 @@ class App extends React.Component<{}, AppState> {
   render(): any {
     if (this.state.queried && this.state.query) {
       return (<div className="App">
+        <div className="top-title"><span className="top-text" onClick={(event) => window.location.reload()}>taylor swift lyric searcher</span></div>
         <InputBox submitHandler={this.searchHandler} />
         <QueriedLyrics query={this.state.query} />
       </div>);
     } else {
       return (<div className="App">
+        <div className="title"><span className="title-text">taylor swift</span> <br /><br /><span className="title-text">lyric searcher</span></div>
         <InputBox submitHandler={this.searchHandler} />
       </div>);
     }
