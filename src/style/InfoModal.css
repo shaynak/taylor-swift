@@ -1,0 +1,40 @@
+a {
+  background-color: lavender;
+  text-decoration: none;
+  color: black;
+  transition: 0.5s;
+}
+
+a:hover {
+  transition: 0.5s;
+  color: black;
+  background-color: lightgray;
+}
+
+.ModalBox {
+  transition: 0.5s;
+  top: 35%;
+  left: 35%;
+  width: 30%;
+  border: 3px lavender;
+  background-color: white;
+  border-radius: 10px;
+  z-index: 100;
+  position: absolute;
+  padding: 16px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.InfoModal {
+  animation-name: modalFade;
+  animation-duration: 0.5s;
+  transition: 0.5s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 99;
+  background-color: rgba(205, 200, 220, 0.318);
+}

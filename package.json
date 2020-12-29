@@ -8,8 +8,10 @@
     "@testing-library/user-event": "^12.6.0",
     "flow-bin": "^0.141.0",
     "react": "^17.0.1",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
+    "react-transition-group": "^4.4.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

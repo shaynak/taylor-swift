@@ -1,0 +1,19 @@
+.InfoButton {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 35px;
+  bottom: 2%;
+  right: 2%;
+  padding: 5px;
+  font-size: 25px;
+  background-color: lavender;
+  font-weight: 300;
+  transition: 0.5s;
+}
+
+.InfoButton:hover {
+  background-color: lightgray;
+  cursor: pointer;
+  transition: 0.5s;
+}
