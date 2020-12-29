@@ -41,7 +41,9 @@ class InfoModal extends React.Component<InfoModalProps, InfoModalState> {
             Search for a word or a phrase and see all the places Taylor Swift
             has used it in her music! Currently, this searcher does not support
             different forms of words (e.g. you must make separate queries for
-            "rain" and "raining").
+            "rain" and "raining"). Additionally, lines that repeat with the same
+            lines before and after them have been removed from data, so counts
+            may not be 100% accurate for more common words.
           </p>
           <p style={{ "font-size": "14px" }}>
             Made by&nbsp;<a href="http://shaynak.github.io">Shayna Kothari</a>
