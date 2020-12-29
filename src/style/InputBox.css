@@ -16,15 +16,19 @@ input {
   border: 2px solid gray;
   border-radius: 20px;
   padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.queryBox-mobile {
+  margin-top: 4%;
 }
 
 .queryBox:focus {
   transition: 0.5s;
   outline: none;
   border-radius: 20px;
-  border-color: rgb(220, 220, 250);
+  border-color: lavender;
 }
 
 .submitButton {
@@ -41,7 +45,7 @@ input {
 
 .submitButton:hover {
   transition: 0.5s;
-  background-color: lightgray;
+  background-color: lavender;
   cursor: pointer;
 }
 

@@ -13,7 +13,7 @@ a:hover {
 
 .ModalBox {
   transition: 0.5s;
-  top: 35%;
+  top: 30%;
   left: 35%;
   width: 30%;
   border: 3px lavender;
@@ -25,6 +25,13 @@ a:hover {
   text-align: center;
   font-size: 16px;
   line-height: 24px;
+}
+
+.ModalBox-mobile {
+  top: 10%;
+  width: 76%;
+  left: 12%;
+  right: 12%;
 }
 
 .InfoModal {

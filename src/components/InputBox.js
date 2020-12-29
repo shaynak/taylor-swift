@@ -1,13 +1,16 @@
 // @flow
-import '../style/InputBox.css';
-import React from 'react';
+import "../style/InputBox.css";
+import { isMobile } from "./utils";
+import React from "react";
+
+const mobile = isMobile();
 
 type InputBoxProps = {
   submitHandler: (string) => void,
-}
+};
 type InputBoxState = {
   query: ?string,
-}
+};
 
 class InputBox extends React.Component<InputBoxProps, InputBoxState> {
   constructor() {
@@ -34,7 +37,12 @@ class InputBox extends React.Component<InputBoxProps, InputBoxState> {
       <div className="InputBox">
         <form onSubmit={this.handleSubmit}>
           <label>
-            <input className="queryBox" type="text" value={this.state.query} onChange={this.handleChange} />
+            <input
+              className={mobile ? "queryBox queryBox-mobile" : "queryBox"}
+              type="text"
+              value={this.state.query}
+              onChange={this.handleChange}
+            />
           </label>
           <input className="submitButton" type="submit" value="➔" />
         </form>

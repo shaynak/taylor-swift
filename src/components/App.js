@@ -1,16 +1,18 @@
 // @flow
-import '../style/App.css';
-import '../style/index.css';
-import InputBox from './InputBox';
-import QueriedLyrics from './QueriedLyrics';
-import InfoButton from './InfoButton';
-import InfoModal from './InfoModal';
-import React from 'react';
+import "../style/index.css";
+import "../style/App.css";
+import InputBox from "./InputBox";
+import QueriedLyrics from "./QueriedLyrics";
+import InfoButton from "./InfoButton";
+import InfoModal from "./InfoModal";
+import { isMobile } from "./utils";
+import React from "react";
 
+const mobile = isMobile();
 type AppState = {
-  queried: bool,
+  queried: boolean,
   query: ?string,
-  modal: bool,
+  modal: boolean,
 };
 
 class App extends React.Component<{}, AppState> {
@@ -50,13 +52,36 @@ class App extends React.Component<{}, AppState> {
     return (
       <div className="App">
         <InfoModal handler={this.infoModalHandler} display={this.state.modal} />
-        {this.state.queried && this.state.query ? <div className="top-title"><span className="top-text" onClick={(event) => window.location.reload()}>taylor swift lyric searcher</span></div> : <div className="title"><span className="title-text">taylor swift <br /> lyric searcher</span></div>}
+        {this.state.queried && this.state.query ? (
+          <div className="top-title">
+            <span
+              className={mobile ? "top-text-mobile header" : "top-text header"}
+              onClick={(event) => window.location.reload()}
+            >
+              taylor swift lyric searcher
+            </span>
+          </div>
+        ) : (
+          <div className="title">
+            <span
+              className={
+                mobile ? "title-text-mobile header" : "title-text header"
+              }
+            >
+              taylor swift <br /> lyric searcher
+            </span>
+          </div>
+        )}
         <InputBox submitHandler={this.searchHandler} />
-        {this.state.queried && this.state.query ? <QueriedLyrics query={this.state.query} /> : ""}
+        {this.state.queried && this.state.query ? (
+          <QueriedLyrics query={this.state.query} />
+        ) : (
+          ""
+        )}
         <InfoButton handler={this.infoButtonHandler}></InfoButton>
-      </div>);
+      </div>
+    );
   }
 }
-
 
 export default App;

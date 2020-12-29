@@ -7,13 +7,8 @@ body {
   overflow-x: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -23,22 +18,12 @@ code {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: lightgray;
+  background: lavender;
   transition: 1s;
 }
 
-.title-text {
+.header {
   font-family: "Roboto Slab", sans-serif;
-  font-weight: 300;
-  font-size: 72px;
-  line-height: 122px;
   background-color: lavender;
-}
-
-.top-text {
-  font-family: "Roboto Slab", sans-serif;
   font-weight: 300;
-  font-size: 32px;
-  background-color: lavender;
-  transition: 0.5s;
 }

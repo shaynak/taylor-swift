@@ -11,3 +11,14 @@ hr {
   margin-right: 20%;
   margin-top: calc(4% + 30px);
 }
+
+.QueriedLyrics-mobile {
+  width: 80%;
+  height: calc(70% + 30px);
+  position: absolute;
+  overflow: auto;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: calc(10% + 24px);
+  height: calc(76% + 24px);
+}

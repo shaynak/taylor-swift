@@ -5,17 +5,34 @@
 .title {
   margin-top: 3%;
   text-align: center;
-  width: 40%;
-  margin-left: 30%;
-  margin-right: 30%;
+  width: 100%;
 }
 
 .top-title {
   margin-top: 2%;
 }
 
-.top-text:hover {
+.title-text-mobile {
+  font-size: 40px;
+  line-height: 60px;
+}
+
+.title-text {
+  font-size: 72px;
+  line-height: 122px;
+}
+
+.top-text-mobile {
+  font-size: 24px;
+}
+
+.top-text {
+  font-size: 32px;
+  transition: background-color 0.5s;
+}
+
+.top-text:hover .top-text-mobile:hover {
   background-color: white;
   cursor: pointer;
-  transition: 0.5s;
+  transition: background-color 0.5s;
 }
