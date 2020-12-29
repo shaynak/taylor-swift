@@ -43,7 +43,8 @@ class InfoModal extends React.Component<InfoModalProps, InfoModalState> {
             different forms of words (e.g. you must make separate queries for
             "rain" and "raining"). Additionally, lines that repeat with the same
             lines before and after them have been removed from data, so counts
-            may not be 100% accurate for more common words.
+            may not be 100% accurate for more common words. A few songs are
+            missing from our dataset -- this is a known issue!
           </p>
           <p style={{ "font-size": "14px" }}>
             Made by&nbsp;<a href="http://shaynak.github.io">Shayna Kothari</a>
