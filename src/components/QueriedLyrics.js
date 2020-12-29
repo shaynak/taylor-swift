@@ -47,7 +47,7 @@ class QueriedLyrics extends React.Component<
           {Object.keys(lyricsJSON).map((album) =>
             Object.keys(lyricsJSON[album]).map((song) =>
               lyricsJSON[album][song].map((songLyric) => {
-                if (containsQuery(songLyric.lyric, this.props.query) >= 0) {
+                if (containsQuery(songLyric.lyric, this.props.query) >= 0 && album !== "Uncategorized") {
                   return (
                     <SongLyric
                       album={album}

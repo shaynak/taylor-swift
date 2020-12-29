@@ -10,13 +10,17 @@ export const cleanLyric = (lyric: string): string => {
   );
   // Replace dashes with space and single hyphen
   cleaned_lyric = cleaned_lyric.replace(/\u2013|\u2014/g, " - ");
+  // Replace cyrillic + accented Es with normal Es
+  cleaned_lyric = cleaned_lyric.replace(/\u0435/g, "e");
   return cleaned_lyric;
 };
 
 export const containsQuery = (lyric: string, query: string): number => {
   query = cleanLyric(query.toLowerCase());
+  query = query.replace(/\u00e9/g, "e");
+  lyric = lyric.replace(/\u00e9/g, "e");
   const regex = new RegExp(
-    `([\\(\\)\\.\\-?!;:,\\s"]|^)${query}([\\(\\)\\.\\-?!;:,\\s"]|$)`
+    `([\\(\\)\\.\\-?!;:,\\s\u2026"]|^)${query}([\\(\\)\\.\\-?!;:,\\s\u2026"]|$)`
   );
   return cleanLyric(lyric.toLowerCase()).search(regex);
 };
