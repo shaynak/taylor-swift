@@ -30,7 +30,7 @@ a:hover {
 .ModalBox-mobile {
   top: 10%;
   width: 76%;
-  left: 12%;
+  left: calc(12% - 16px);
   right: 12%;
 }
 

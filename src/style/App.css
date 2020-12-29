@@ -31,7 +31,13 @@
   transition: background-color 0.5s;
 }
 
-.top-text:hover .top-text-mobile:hover {
+.top-text:hover {
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.top-text-mobile:hover {
   background-color: white;
   cursor: pointer;
   transition: background-color 0.5s;
