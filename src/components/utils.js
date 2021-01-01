@@ -25,6 +25,22 @@ export const containsQuery = (lyric: string, query: string): number => {
   return cleanLyric(lyric.toLowerCase()).search(regex);
 };
 
+export const queriesFound = (lyric: string, query: string): number => {
+  lyric = cleanLyric(lyric);
+  query = cleanLyric(query);
+  let start: number;
+  let found = 0;
+  do {
+    start = containsQuery(lyric, query);
+    if (start === -1) {
+      return found;
+    }
+    found += 1;
+    lyric = lyric.substring(start + query.length);
+  } while (lyric.length > 0);
+  return found;
+};
+
 export const isMobile = (): boolean => {
   const mobileRegex = new RegExp(
     `Android|webOS|iPhone|iPad|BlackBerry|Phone|Mobile`
