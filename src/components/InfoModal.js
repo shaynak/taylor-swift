@@ -1,6 +1,7 @@
 // @flow
 import "../style/InfoModal.css";
 import { isMobile } from "./utils";
+import { ModalText } from "./constants";
 import React from "react";
 
 const mobile = isMobile();
@@ -37,12 +38,8 @@ class InfoModal extends React.Component<InfoModalProps, InfoModalState> {
         style={{ display: this.props.display ? "block" : "none" }}
       >
         <div className={mobile ? "ModalBox ModalBox-mobile" : "ModalBox"}>
-          <p>
-            Search for a word or a phrase and see all the places Taylor Swift
-            has used it in her music! Currently, this searcher does not support
-            different forms of words (e.g. you must make separate queries for
-            "rain" and "raining").
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: ModalText }} />
+          {/** CREDITS: Please do not edit this. Feel free to add your own credits to ModalText. */}
           <p style={{ "font-size": "14px" }}>
             Made by&nbsp;<a href="http://shaynak.github.io">Shayna Kothari</a>
             &nbsp;using&nbsp;
@@ -51,9 +48,7 @@ class InfoModal extends React.Component<InfoModalProps, InfoModalState> {
             <a href="https://github.com/johnwmillr/LyricsGenius">
               LyricsGenius
             </a>
-            . Scraped data can be found&nbsp;
-            <a href="https://github.com/shaynak/taylor-swift-lyrics">here</a>.
-            If you have comments or suggestions, contact me by{" "}
+            . If you have comments or suggestions, contact me by{" "}
             <a href="mailto:shayna.kothari@berkeley.edu">email</a> or find me on{" "}
             <a href="http://twitter.com/shaynapping">Twitter</a>!
           </p>

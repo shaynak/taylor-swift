@@ -6,6 +6,7 @@ import QueriedLyrics from "./QueriedLyrics";
 import InfoButton from "./InfoButton";
 import InfoModal from "./InfoModal";
 import { isMobile } from "./utils";
+import { ArtistName } from "./constants";
 import React from "react";
 
 const mobile = isMobile();
@@ -58,7 +59,7 @@ class App extends React.Component<{}, AppState> {
               className={mobile ? "top-text-mobile header" : "top-text header"}
               onClick={(event) => window.location.reload()}
             >
-              taylor swift lyric searcher
+              {ArtistName} lyric searcher
             </span>
           </div>
         ) : (
@@ -68,7 +69,7 @@ class App extends React.Component<{}, AppState> {
                 mobile ? "title-text-mobile header" : "title-text header"
               }
             >
-              taylor swift <br /> lyric searcher
+              {ArtistName} <br /> lyric searcher
             </span>
           </div>
         )}
