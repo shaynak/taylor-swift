@@ -12,7 +12,7 @@ import React from "react";
 const mobile = isMobile();
 type AppState = {
   queried: boolean,
-  query: ?string,
+  query: string,
   modal: boolean,
 };
 
@@ -21,7 +21,7 @@ class App extends React.Component<{}, AppState> {
     super();
     this.state = {
       queried: false,
-      query: undefined,
+      query: "",
       modal: false,
     };
     // NOTE(shayna): this is a workaround for flow

@@ -1,4 +1,10 @@
 // @flow
+
+// From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
+function escapeRegExp(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
 export const cleanLyric = (lyric: string): string => {
   // Replace special quotes with normal quotes
   let cleaned_lyric = lyric.replace(/\u2018|\u2019/g, "'");
@@ -20,7 +26,7 @@ export const containsQuery = (lyric: string, query: string): number => {
   query = query.replace(/\u00e9/g, "e");
   lyric = lyric.replace(/\u00e9/g, "e");
   const regex = new RegExp(
-    `([\\(\\)\\.\\-?!;:,\\s\u2026"]|^)${query}([\\(\\)\\.\\-?!;:,\\s\u2026"]|$)`
+    `([\\(\\)\\.\\-?!;:,\\s\u2026"]|^)${escapeRegExp(query)}([\\(\\)\\.\\-?!;:,\\s\u2026"]|$)`
   );
   return cleanLyric(lyric.toLowerCase()).search(regex);
 };

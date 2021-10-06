@@ -9,14 +9,14 @@ type InputBoxProps = {
   submitHandler: (string) => void,
 };
 type InputBoxState = {
-  query: ?string,
+  query: string,
 };
 
 class InputBox extends React.Component<InputBoxProps, InputBoxState> {
   constructor() {
     super();
     this.state = {
-      query: undefined,
+      query: "",
     };
     // NOTE(shayna): this is a workaround for flow
     (this: any).handleChange = this.handleChange.bind(this);

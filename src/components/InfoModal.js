@@ -40,7 +40,7 @@ class InfoModal extends React.Component<InfoModalProps, InfoModalState> {
         <div className={mobile ? "ModalBox ModalBox-mobile" : "ModalBox"}>
           <p dangerouslySetInnerHTML={{ __html: ModalText }} />
           {/** CREDITS: Please do not edit this. Feel free to add your own credits to ModalText. */}
-          <p style={{ "font-size": "14px" }}>
+          <p style={{ "fontSize": "14px" }}>
             Made by&nbsp;<a href="http://shaynak.github.io">Shayna Kothari</a>
             &nbsp;using&nbsp;
             <a href="http://reactjs.org">React</a>. Lyrics scraped from&nbsp;

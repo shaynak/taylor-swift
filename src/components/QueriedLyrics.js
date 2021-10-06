@@ -29,30 +29,45 @@ class QueriedLyrics extends React.Component<QueriedLyricsProps> {
   }
 
   render(): any {
+    let counter = 0;
     return (
       <div>
         <div className={mobile ? "QueriedLyrics-mobile" : "QueriedLyrics"}>
-          {Object.keys(lyricsJSON).map((album) =>
-            Object.keys(lyricsJSON[album]).map((song) =>
-              lyricsJSON[album][song].map((songLyric) => {
-                if (
-                  containsQuery(songLyric.lyric, this.props.query) >= 0 &&
-                  album !== "Uncategorized"
-                ) {
-                  return (
-                    <SongLyric
-                      album={album}
-                      song={song}
-                      lyric={songLyric.lyric}
-                      next={songLyric.next}
-                      prev={songLyric.prev}
-                      query={this.props.query}
-                    />
-                  );
-                }
-              })
-            )
-          )}
+          {Object.keys(lyricsJSON)
+            .sort((album1, album2) => {
+              if (album1 === "Unreleased Songs") {
+                return 1;
+              } else if (album2 === "Unreleased Songs") {
+                return -1;
+              }
+              return 0;
+            })
+            .map((album) =>
+              Object.keys(lyricsJSON[album]).map((song) =>
+                lyricsJSON[album][song].map((songLyric) => {
+                  counter++;
+                  if (
+                    containsQuery(songLyric.lyric, this.props.query) >= 0 &&
+                    album !== "Uncategorized"
+                  ) {
+                    // Temporary fix because get_lyric_list in scraper.py is failing at this
+                    const nextLyric = songLyric.next[0] === '[' ? "" : songLyric.next;
+                    return (
+                      <SongLyric
+                        key={counter}
+                        album={album}
+                        song={song}
+                        lyric={songLyric.lyric}
+                        next={nextLyric}
+                        prev={songLyric.prev}
+                        query={this.props.query}
+                      />
+                    );
+                  }
+                  return <></>;
+                })
+              )
+            )}
         </div>
         <div className={mobile ? "totalResults-mobile" : "totalResults"}>
           Total usages found: {this.countOccurrences()}

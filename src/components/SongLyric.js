@@ -58,9 +58,8 @@ class SongLyric extends React.Component<SongLyricProps> {
           {this.props.next}
         </p>
         {this.props.song}
-        {this.props.album != "NaN" ? "," : ""}{" "}
-        <i>{this.props.album != "NaN" ? this.props.album : ""}</i>
-        <hr></hr>
+        {this.props.album !== "NaN" ? "," : ""}{" "}
+        <i>{this.props.album !== "NaN" ? this.props.album : ""}</i>        <hr></hr>
       </div>
     );
   }
