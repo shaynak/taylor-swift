@@ -7,82 +7,50 @@ import InfoButton from "./InfoButton";
 import InfoModal from "./InfoModal";
 import { isMobile } from "./utils";
 import { ArtistName } from "./constants";
-import React from "react";
+import React, { useState } from "react";
 
 const mobile = isMobile();
-type AppState = {
-  queried: boolean,
-  query: string,
-  modal: boolean,
-};
 
-class App extends React.Component<{}, AppState> {
-  constructor() {
-    super();
-    this.state = {
-      queried: false,
-      query: "",
-      modal: false,
-    };
-    // NOTE(shayna): this is a workaround for flow
-    (this: any).searchHandler = this.searchHandler.bind(this);
-    (this: any).infoButtonHandler = this.infoButtonHandler.bind(this);
-    (this: any).infoModalHandler = this.infoModalHandler.bind(this);
-  }
+function App(): React$MixedElement {
+  const [queried, setQueried] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("");
+  const [modal, setModal] = useState<boolean>(false);
 
-  searchHandler(query: string) {
-    this.setState({
-      queried: true,
-      query: query,
-    });
-  }
+  const searchHandler = (query: string) => {
+    setQueried(true);
+    setQuery(query);
+  };
+  const infoButtonHandler = () => setModal(true);
+  const infoModalHandler = () => setModal(false);
 
-  infoButtonHandler() {
-    this.setState({
-      modal: true,
-    });
-  }
-
-  infoModalHandler() {
-    this.setState({
-      modal: false,
-    });
-  }
-
-  render(): any {
-    return (
-      <div className="App">
-        <InfoModal handler={this.infoModalHandler} display={this.state.modal} />
-        {this.state.queried && this.state.query ? (
-          <div className="top-title">
-            <span
-              className={mobile ? "top-text-mobile header" : "top-text header"}
-              onClick={(event) => window.location.reload()}
-            >
-              {ArtistName} lyric searcher
-            </span>
-          </div>
-        ) : (
-          <div className="title">
-            <span
-              className={
-                mobile ? "title-text-mobile header" : "title-text header"
-              }
-            >
-              {ArtistName} <br /> lyric searcher
-            </span>
-          </div>
-        )}
-        <InputBox submitHandler={this.searchHandler} />
-        {this.state.queried && this.state.query ? (
-          <QueriedLyrics query={this.state.query} />
-        ) : (
-          ""
-        )}
-        <InfoButton handler={this.infoButtonHandler}></InfoButton>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <InfoModal handler={infoModalHandler} display={modal} />
+      {queried && query !== "" ? (
+        <div className="top-title">
+          <span
+            className={mobile ? "top-text-mobile header" : "top-text header"}
+            onClick={(event) => window.location.reload()}
+          >
+            {ArtistName} lyric searcher
+          </span>
+        </div>
+      ) : (
+        <div className="title">
+          <span
+            className={
+              mobile ? "title-text-mobile header" : "title-text header"
+            }
+          >
+            {ArtistName} <br /> lyric searcher
+          </span>
+        </div>
+      )}
+      <InputBox submitHandler={searchHandler} />
+      {queried && query !== "" ? <QueriedLyrics query={query} /> : ""}
+      <InfoButton handler={infoButtonHandler}></InfoButton>
+    </div>
+  );
 }
 
 export default App;

@@ -1,11 +1,11 @@
 // @flow
 
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
-function escapeRegExp(str: string): string {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-}
+const escapeRegExp = (str: string): string => {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+};
 
-export const cleanLyric = (lyric: string): string => {
+const cleanLyric = (lyric: string): string => {
   // Replace special quotes with normal quotes
   let cleaned_lyric = lyric.replace(/\u2018|\u2019/g, "'");
   cleaned_lyric = cleaned_lyric.replace(/\u201C|\u201D/g, '"');
@@ -26,7 +26,9 @@ export const containsQuery = (lyric: string, query: string): number => {
   query = query.replace(/\u00e9/g, "e");
   lyric = lyric.replace(/\u00e9/g, "e");
   const regex = new RegExp(
-    `([\\(\\)\\.\\-?!;:,\\s\u2026"]|^)${escapeRegExp(query)}([\\(\\)\\.\\-?!;:,\\s\u2026"]|$)`
+    `([\\(\\)\\.\\-?!;:,\\s\u2026"]|^)${escapeRegExp(
+      query
+    )}([\\(\\)\\.\\-?!;:,\\s\u2026"]|$)`
   );
   return cleanLyric(lyric.toLowerCase()).search(regex);
 };
@@ -52,4 +54,33 @@ export const isMobile = (): boolean => {
     `Android|webOS|iPhone|iPad|BlackBerry|Phone|Mobile`
   );
   return navigator.userAgent.search(mobileRegex) >= 0;
+};
+
+export const boldQuery = (lyric: string, query: string): string => {
+  lyric = cleanLyric(lyric);
+  query = cleanLyric(query);
+  let start: number, end: number;
+  let boldedLyric = "";
+  do {
+    start = containsQuery(lyric, query);
+    if (start === -1) {
+      return boldedLyric + lyric;
+    }
+    end = start + query.length;
+    // If not at the beginning, we need to shift start and end
+    // because containsQuery will return the index of the space
+    // before the start of the query
+    if (lyric.toLowerCase().charAt(0) !== query.toLowerCase().charAt(0)) {
+      start += 1;
+      end += 1;
+    }
+    boldedLyric =
+      boldedLyric +
+      lyric.substring(0, start) +
+      '<span class="query">' +
+      lyric.substring(start, end) +
+      "</span>";
+    lyric = lyric.substring(end);
+  } while (lyric.length > 0);
+  return boldedLyric;
 };

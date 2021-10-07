@@ -6,14 +6,12 @@ type InfoButtonProps = {
   handler: (any) => void,
 };
 
-class InfoButton extends React.Component<InfoButtonProps> {
-  render(): any {
-    return (
-      <div className="InfoButton" onClick={this.props.handler}>
-        ?
-      </div>
-    );
-  }
+export default function InfoButton({
+  handler,
+}: InfoButtonProps): React$MixedElement {
+  return (
+    <div className="InfoButton" onClick={handler}>
+      ?
+    </div>
+  );
 }
-
-export default InfoButton;
