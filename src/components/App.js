@@ -13,12 +13,12 @@ const mobile = isMobile();
 
 function App(): React$MixedElement {
   const [queried, setQueried] = useState<boolean>(false);
-  const [query, setQuery] = useState<string>("");
+  const [queries, setQueries] = useState<Array<string>>([]);
   const [modal, setModal] = useState<boolean>(false);
 
   const searchHandler = (query: string) => {
     setQueried(true);
-    setQuery(query);
+    setQueries(query.split(',').map(queryString => queryString.trim()));
   };
   const infoButtonHandler = () => setModal(true);
   const infoModalHandler = () => setModal(false);
@@ -26,7 +26,7 @@ function App(): React$MixedElement {
   return (
     <div className="App">
       <InfoModal handler={infoModalHandler} display={modal} />
-      {queried && query !== "" ? (
+      {queried && queries.length > 0 ? (
         <div className="top-title">
           <span
             className={mobile ? "top-text-mobile header" : "top-text header"}
@@ -47,7 +47,7 @@ function App(): React$MixedElement {
         </div>
       )}
       <InputBox submitHandler={searchHandler} />
-      {queried && query !== "" ? <QueriedLyrics query={query} /> : ""}
+      {queried && queries.length > 0 ? <QueriedLyrics queries={queries} /> : null}
       <InfoButton handler={infoButtonHandler}></InfoButton>
     </div>
   );

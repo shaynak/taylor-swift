@@ -7,14 +7,15 @@ import { containsQuery, isMobile, queriesFound } from "./utils.js";
 const lyricsJSON = require("../taylor-swift-lyrics/lyrics.json");
 const mobile = isMobile();
 type QueriedLyricsProps = {
-  query: string,
+  queries: Array<string>,
 };
 
 export default function QueriedLyrics({
-  query,
+  queries,
 }: QueriedLyricsProps): React$MixedElement {
   const countOccurrences = (): number => {
     let found = 0;
+    for (const query of queries) {
     for (const album in lyricsJSON) {
       if (album !== "Uncategorized") {
         for (const song in lyricsJSON[album]) {
@@ -26,6 +27,7 @@ export default function QueriedLyrics({
         }
       }
     }
+  }
     return found;
   };
 
@@ -47,7 +49,7 @@ export default function QueriedLyrics({
               lyricsJSON[album][song].map((songLyric) => {
                 counter++;
                 if (
-                  containsQuery(songLyric.lyric, query) >= 0 &&
+                  queries.some(query => containsQuery(songLyric.lyric, query) >= 0) &&
                   album !== "Uncategorized"
                 ) {
                   // Temporary fix because get_lyric_list in scraper.py is failing at this
@@ -61,7 +63,7 @@ export default function QueriedLyrics({
                       lyric={songLyric.lyric}
                       next={nextLyric}
                       prev={songLyric.prev}
-                      query={query}
+                      queries={queries}
                     />
                   );
                 }

@@ -56,8 +56,12 @@ export const isMobile = (): boolean => {
   return navigator.userAgent.search(mobileRegex) >= 0;
 };
 
-export const boldQuery = (lyric: string, query: string): string => {
+export const boldQueries = (lyric: string, queries: Array<string>): string => {
   lyric = cleanLyric(lyric);
+  return queries.reduce(boldQuery, lyric);
+}
+
+export const boldQuery = (lyric: string, query: string): string => {
   query = cleanLyric(query);
   let start: number, end: number;
   let boldedLyric = "";

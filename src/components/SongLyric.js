@@ -1,6 +1,6 @@
 // @flow
 import "../style/SongLyric.css";
-import { boldQuery } from "./utils.js";
+import { boldQueries } from "./utils.js";
 import React from "react";
 
 type SongLyricProps = {
@@ -9,7 +9,7 @@ type SongLyricProps = {
   prev: string,
   lyric: string,
   next: string,
-  query: string,
+  queries: Array<string>,
 };
 
 export default function SongLyric({
@@ -18,7 +18,7 @@ export default function SongLyric({
   prev,
   lyric,
   next,
-  query,
+  queries,
 }: SongLyricProps): React$MixedElement {
   return (
     <div className="SongLyric">
@@ -28,7 +28,7 @@ export default function SongLyric({
         <span
           className="lyric"
           dangerouslySetInnerHTML={{
-            __html: boldQuery(lyric, query),
+            __html: boldQueries(lyric, queries),
           }}
         />
         {next.length > 0 ? <br /> : ""}
