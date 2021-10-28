@@ -88,3 +88,10 @@ export const boldQuery = (lyric: string, query: string): string => {
   } while (lyric.length > 0);
   return boldedLyric;
 };
+
+export const URL_QUERY_PARAM = 'query'
+
+export const getURLQueryStrings = (): Array<string> => {
+  const currentURL = new URL(window.location);
+  return currentURL.searchParams.getAll(URL_QUERY_PARAM);
+}

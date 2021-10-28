@@ -5,32 +5,43 @@ import InputBox from "./InputBox";
 import QueriedLyrics from "./QueriedLyrics";
 import InfoButton from "./InfoButton";
 import InfoModal from "./InfoModal";
-import { isMobile } from "./utils";
+import { isMobile, getURLQueryStrings, URL_QUERY_PARAM } from "./utils";
 import { ArtistName } from "./constants";
-import React, { useState } from "react";
+import React, { useState, useEffect, } from "react";
+import { useHistory } from 'react-router-dom';
+
 
 const mobile = isMobile();
 
-function App(): React$MixedElement {
-  const [queried, setQueried] = useState<boolean>(false);
-  const [queries, setQueries] = useState<Array<string>>([]);
+function App(): React$MixedElement { 
+  const [queries, setQueries] = useState<Array<string>>(getURLQueryStrings());
   const [modal, setModal] = useState<boolean>(false);
+  const history = useHistory();
 
   const searchHandler = (query: string) => {
-    setQueried(true);
-    setQueries(query.split(',').map(queryString => queryString.trim()));
+    const queryStrings = query
+    .split(",")
+    .map((queryString) => queryString.trim())
+    .filter((queryString) => queryString !== "");
+    const URLQueryString = queryStrings.map(query => URL_QUERY_PARAM + "=" + query).join('&');
+    history.push({search: URLQueryString});
   };
+
+  history.listen((location, action) => {
+    setQueries(getURLQueryStrings());
+  });
+
   const infoButtonHandler = () => setModal(true);
   const infoModalHandler = () => setModal(false);
 
   return (
     <div className="App">
       <InfoModal handler={infoModalHandler} display={modal} />
-      {queried && queries.length > 0 ? (
+      {queries.length > 0 ? (
         <div className="top-title">
           <span
             className={mobile ? "top-text-mobile header" : "top-text header"}
-            onClick={(event) => window.location.reload()}
+            onClick={(event) => history.push('/')}
           >
             {ArtistName} lyric searcher
           </span>
@@ -46,8 +57,10 @@ function App(): React$MixedElement {
           </span>
         </div>
       )}
-      <InputBox submitHandler={searchHandler} />
-      {queried && queries.length > 0 ? <QueriedLyrics queries={queries} /> : null}
+      <InputBox submitHandler={searchHandler} queryString={queries.join(', ')}/>
+      {queries.length > 0 ? (
+        <QueriedLyrics queries={queries} />
+      ) : null}
       <InfoButton handler={infoButtonHandler}></InfoButton>
     </div>
   );

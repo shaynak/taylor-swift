@@ -7,12 +7,14 @@ const mobile = isMobile();
 
 type InputBoxProps = {
   submitHandler: (string) => void,
+  queryString: string,
 };
 
 export default function InputBox({
   submitHandler,
+  queryString,
 }: InputBoxProps): React$MixedElement {
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useState<string>(queryString);
 
   const handleChange = (event: any) => {
     setQuery(event.target.value);
