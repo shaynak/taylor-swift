@@ -13,24 +13,29 @@ type QueriedLyricsProps = {
 export default function QueriedLyrics({
   queries,
 }: QueriedLyricsProps): React$MixedElement {
-  const countOccurrences = (): number => {
+  const countOccurrences = (): { occurrences: number, songs: number } => {
     let found = 0;
+    let songs = 0;
     for (const query of queries) {
-    for (const album in lyricsJSON) {
-      if (album !== "Uncategorized") {
-        for (const song in lyricsJSON[album]) {
-          for (let i = 0; i < lyricsJSON[album][song].length; i++) {
-            const songLyric = lyricsJSON[album][song][i];
-            found +=
-              songLyric.multiplicity * queriesFound(songLyric.lyric, query);
+      for (const album in lyricsJSON) {
+        if (album !== "Uncategorized") {
+          for (const song in lyricsJSON[album]) {
+            let foundInSong = false;
+            for (let i = 0; i < lyricsJSON[album][song].length; i++) {
+              const songLyric = lyricsJSON[album][song][i];
+              const timesFound = queriesFound(songLyric.lyric, query);
+              found += songLyric.multiplicity * timesFound;
+              foundInSong = foundInSong || timesFound > 0;
+            }
+            songs += foundInSong ? 1 : 0;
           }
         }
       }
     }
-  }
-    return found;
+    return { occurrences: found, songs: songs };
   };
 
+  const {occurrences, songs} = countOccurrences();
   let counter = 0;
   return (
     <div>
@@ -49,19 +54,18 @@ export default function QueriedLyrics({
               lyricsJSON[album][song].map((songLyric) => {
                 counter++;
                 if (
-                  queries.some(query => containsQuery(songLyric.lyric, query) >= 0) &&
+                  queries.some(
+                    (query) => containsQuery(songLyric.lyric, query) >= 0
+                  ) &&
                   album !== "Uncategorized"
                 ) {
-                  // Temporary fix because get_lyric_list in scraper.py is failing at this
-                  const nextLyric =
-                    songLyric.next[0] === "[" ? "" : songLyric.next;
                   return (
                     <SongLyric
                       key={counter}
                       album={album}
                       song={song}
                       lyric={songLyric.lyric}
-                      next={nextLyric}
+                      next={songLyric.next}
                       prev={songLyric.prev}
                       queries={queries}
                     />
@@ -73,7 +77,8 @@ export default function QueriedLyrics({
           )}
       </div>
       <div className={mobile ? "totalResults-mobile" : "totalResults"}>
-        Total usages found: {countOccurrences()}
+        Found {occurrences} usage{occurrences === 1 ? "" : "s"} in {songs}{" "}
+        song{songs === 1 ? "" : "s"}
       </div>
     </div>
   );

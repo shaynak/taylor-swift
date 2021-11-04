@@ -6,4 +6,4 @@ export const ModalText =
   has used it in her music! To search for multiple words or phrases, use \
   a comma between them. Scraped data can be found \
   <a href="https://github.com/shaynak/taylor-swift-lyrics">here</a>. \
-  Last update: 10/5/21.';
+  Last update: 11/4/21.';

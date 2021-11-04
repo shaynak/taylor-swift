@@ -1,7 +1,7 @@
 // @flow
 import "../style/InputBox.css";
 import { isMobile } from "./utils";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const mobile = isMobile();
 
@@ -15,6 +15,10 @@ export default function InputBox({
   queryString,
 }: InputBoxProps): React$MixedElement {
   const [query, setQuery] = useState<string>(queryString);
+
+  useEffect(() => {
+    setQuery(queryString);
+  }, [queryString]);
 
   const handleChange = (event: any) => {
     setQuery(event.target.value);
