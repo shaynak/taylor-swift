@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/taylor-swift/static/css/main.41d75a0b.chunk.css",
-    "main.js": "/taylor-swift/static/js/main.b720d4bb.chunk.js",
-    "main.js.map": "/taylor-swift/static/js/main.b720d4bb.chunk.js.map",
+    "main.js": "/taylor-swift/static/js/main.cf20143e.chunk.js",
+    "main.js.map": "/taylor-swift/static/js/main.cf20143e.chunk.js.map",
     "runtime-main.js": "/taylor-swift/static/js/runtime-main.32690af6.js",
     "runtime-main.js.map": "/taylor-swift/static/js/runtime-main.32690af6.js.map",
-    "static/js/2.585d57cf.chunk.js": "/taylor-swift/static/js/2.585d57cf.chunk.js",
-    "static/js/2.585d57cf.chunk.js.map": "/taylor-swift/static/js/2.585d57cf.chunk.js.map",
+    "static/js/2.8ed5ab31.chunk.js": "/taylor-swift/static/js/2.8ed5ab31.chunk.js",
+    "static/js/2.8ed5ab31.chunk.js.map": "/taylor-swift/static/js/2.8ed5ab31.chunk.js.map",
     "index.html": "/taylor-swift/index.html",
     "static/css/main.41d75a0b.chunk.css.map": "/taylor-swift/static/css/main.41d75a0b.chunk.css.map",
-    "static/js/2.585d57cf.chunk.js.LICENSE.txt": "/taylor-swift/static/js/2.585d57cf.chunk.js.LICENSE.txt"
+    "static/js/2.8ed5ab31.chunk.js.LICENSE.txt": "/taylor-swift/static/js/2.8ed5ab31.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.32690af6.js",
-    "static/js/2.585d57cf.chunk.js",
+    "static/js/2.8ed5ab31.chunk.js",
     "static/css/main.41d75a0b.chunk.css",
-    "static/js/main.b720d4bb.chunk.js"
+    "static/js/main.cf20143e.chunk.js"
   ]
 }
