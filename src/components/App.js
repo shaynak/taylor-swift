@@ -65,7 +65,13 @@ function App(): React$MixedElement {
         submitHandler={searchHandler}
         queryString={queries.join(", ")}
       />
-      {queries.length > 0 ? <QueriedLyrics queries={queries} /> : null}
+      {queries.length > 0 ? (
+        <QueriedLyrics queries={queries} />
+      ) : (
+        <div className={"tips"}>
+          New: use commas to search for multiple words or phrases!
+        </div>
+      )}
       <InfoButton handler={infoButtonHandler}></InfoButton>
     </div>
   );

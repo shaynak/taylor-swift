@@ -42,3 +42,9 @@
   cursor: pointer;
   transition: background-color 0.5s;
 }
+
+.tips {
+  font-style: italic;
+  font-size: 13px;
+  margin-top: calc(3% + 35px);
+}
