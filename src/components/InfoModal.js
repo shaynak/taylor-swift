@@ -37,8 +37,7 @@ export default function InfoModal({
           <a href="http://genius.com">Genius</a>&nbsp; using&nbsp;
           <a href="https://github.com/johnwmillr/LyricsGenius">LyricsGenius</a>.
           If you have comments or suggestions, contact me by{" "}
-          <a href="mailto:shayna.kothari@berkeley.edu">email</a> or find me on{" "}
-          <a href="http://twitter.com/shaynapping">Twitter</a>!
+          <a href="mailto:shayna.kothari@berkeley.edu">email</a>!
         </p>
       </div>
     </div>
