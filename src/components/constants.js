@@ -8,4 +8,4 @@ export const ModalText =
   <a href="https://github.com/shaynak/taylor-swift-lyrics">here</a>. \
   Curious about what people are searching? See our \
   <a href="https://shaynak-taylor-swift.goatcounter.com/">analytics</a>! \
-  <br><br>Last updated: 12/31/21.';
+  <br><br>Last updated: 1/8/22. First published 12/28/20.';
