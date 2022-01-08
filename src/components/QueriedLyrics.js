@@ -80,8 +80,8 @@ export default function QueriedLyrics({
                     <SongLyric
                       key={counter}
                       album={
-                        albumMap[album] !== "Collaborations" &&
-                        albumMap[album] !== "Movie Soundtracks"
+                        !albumMap[album].includes("Collaborations") &&
+                        !albumMap[album].includes("Movie Soundtracks")
                           ? albumMap[album]
                           : album
                       }

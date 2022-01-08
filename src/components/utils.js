@@ -103,15 +103,3 @@ export const getURLAlbumStrings = (): Array<string> => {
 }
 
 const albumMap = require("../taylor-swift-lyrics/album_map.json");
-
-export const getAlbums = (): Array<string> => {
-  const albums = [];
-  for (const album in albumMap) {
-    for (const albumCategory of albumMap[album]) {
-      if (!albums.includes(albumCategory)) {
-        albums.push(albumCategory);
-      }
-    }
-  }
-  return albums;
-}

@@ -1,8 +1,9 @@
 // @flow
 import "../style/FilterModal.css";
-import { isMobile, getAlbums } from "./utils";
-import { ModalText } from "./constants";
+import { isMobile } from "./utils";
+import { ModalText, ALBUMS } from "./constants";
 import React, { useState } from "react";
+import FilterSelection from "./FilterSelection";
 
 const mobile = isMobile();
 
@@ -23,8 +24,6 @@ export default function FilterModal({
     albumFilters
   );
 
-  const albums = getAlbums();
-
   const clickOutHandler = (event: any) => {
     if (event.target.className === "FilterModal") {
       setAlbumFilters(selectedAlbums);
@@ -32,11 +31,10 @@ export default function FilterModal({
     }
   };
 
-  const handleChange = (event: any) => {
-    const album: string = event.target.value;
-    if (event.target.checked && !selectedAlbums.includes(album)) {
+  const handleChange = (album: string, checked: boolean) => {
+    if (checked && !selectedAlbums.includes(album)) {
       setSelectedAlbums(selectedAlbums.concat(album));
-    } else if (!event.target.checked) {
+    } else if (!checked) {
       setSelectedAlbums(
         selectedAlbums.filter((selectedAlbum) => selectedAlbum !== album)
       );
@@ -57,22 +55,16 @@ export default function FilterModal({
     >
       <div className={mobile ? "ModalBox ModalBox-mobile" : "ModalBox"}>
         Select any albums and/or categories of music that you'd like to filter
-        on! If no albums are selected, all albums will be searched. Click out to save.
+        on! If no albums are selected, all albums will be searched. Click out to
+        save.
         <div className="filterInput">
-          <form onSubmit={handleSubmit}>
-            {albums.sort().map((album) => (
-              <label className="checkboxInput">
-                <input
-                  className={"checkbox"}
-                  checked={selectedAlbums.includes(album)}
-                  type="checkbox"
-                  value={album}
-                  onChange={handleChange}
-                />
-                {album}
-              </label>
-            ))}
-          </form>
+          {ALBUMS.map((album) => (
+            <FilterSelection
+              defaultChecked={selectedAlbums.includes(album)}
+              value={album}
+              onChange={handleChange}
+            />
+          ))}
         </div>
       </div>
     </div>

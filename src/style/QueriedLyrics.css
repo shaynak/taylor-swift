@@ -4,7 +4,7 @@ hr {
 
 .QueriedLyrics {
   width: 60%;
-  height: calc(67% + 30px);
+  height: calc(66% + 30px);
   position: absolute;
   overflow: auto;
   margin-left: 20%;
@@ -20,7 +20,7 @@ hr {
   margin-left: 10%;
   margin-right: 10%;
   margin-top: calc(15.5% + 34px);
-  height: calc(75% + 24px);
+  height: calc(73% + 24px);
 }
 
 .totalResults {

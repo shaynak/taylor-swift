@@ -9,3 +9,19 @@ export const ModalText =
   Curious about what people are searching? See our \
   <a href="https://shaynak-taylor-swift.goatcounter.com/">analytics</a>! \
   <br><br>Last updated: 1/8/22. First published 12/28/20.';
+
+// Ordered list of albums for selector - keep in sync with album map
+export const ALBUMS = [
+  "Taylor Swift",
+  "Beautiful Eyes",
+  "Fearless",
+  "Speak Now",
+  "Red",
+  "1989",
+  "reputation",
+  "Lover",
+  "folklore",
+  "evermore",
+  "Collaborations",
+  "Movie Soundtracks"
+];
