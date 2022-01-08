@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/taylor-swift/static/css/main.3ba54868.chunk.css",
-    "main.js": "/taylor-swift/static/js/main.2fb1042d.chunk.js",
-    "main.js.map": "/taylor-swift/static/js/main.2fb1042d.chunk.js.map",
+    "main.js": "/taylor-swift/static/js/main.582e13c7.chunk.js",
+    "main.js.map": "/taylor-swift/static/js/main.582e13c7.chunk.js.map",
     "runtime-main.js": "/taylor-swift/static/js/runtime-main.32690af6.js",
     "runtime-main.js.map": "/taylor-swift/static/js/runtime-main.32690af6.js.map",
     "static/js/2.10c103e6.chunk.js": "/taylor-swift/static/js/2.10c103e6.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.32690af6.js",
     "static/js/2.10c103e6.chunk.js",
     "static/css/main.3ba54868.chunk.css",
-    "static/js/main.2fb1042d.chunk.js"
+    "static/js/main.582e13c7.chunk.js"
   ]
 }
