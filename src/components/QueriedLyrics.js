@@ -5,20 +5,36 @@ import SongLyric from "./SongLyric";
 import { containsQuery, isMobile, queriesFound } from "./utils.js";
 
 const lyricsJSON = require("../taylor-swift-lyrics/lyrics.json");
+const albumMap = require("../taylor-swift-lyrics/album_map.json");
 const mobile = isMobile();
 type QueriedLyricsProps = {
   queries: Array<string>,
+  selectedAlbums: Array<string>,
 };
 
 export default function QueriedLyrics({
   queries,
+  selectedAlbums,
 }: QueriedLyricsProps): React$MixedElement {
+  const isSelectedAlbum = (album: string): boolean => {
+    if (selectedAlbums.length === 0) {
+      return true;
+    }
+    for (const albumCategory of albumMap[album]) {
+      if (selectedAlbums.includes(albumCategory)) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   const countOccurrences = (): { occurrences: number, songs: number } => {
     let found = 0;
     let songs = 0;
     for (const query of queries) {
       for (const album in lyricsJSON) {
-        if (album !== "Uncategorized") {
+        if (album !== "Uncategorized" && isSelectedAlbum(album)) {
           for (const song in lyricsJSON[album]) {
             let foundInSong = false;
             for (let i = 0; i < lyricsJSON[album][song].length; i++) {
@@ -35,7 +51,7 @@ export default function QueriedLyrics({
     return { occurrences: found, songs: songs };
   };
 
-  const {occurrences, songs} = countOccurrences();
+  const { occurrences, songs } = countOccurrences();
   let counter = 0;
   return (
     <div>
@@ -54,6 +70,7 @@ export default function QueriedLyrics({
               lyricsJSON[album][song].map((songLyric) => {
                 counter++;
                 if (
+                  isSelectedAlbum(album) &&
                   queries.some(
                     (query) => containsQuery(songLyric.lyric, query) >= 0
                   ) &&
@@ -62,7 +79,12 @@ export default function QueriedLyrics({
                   return (
                     <SongLyric
                       key={counter}
-                      album={album}
+                      album={
+                        albumMap[album] !== "Collaborations" &&
+                        albumMap[album] !== "Movie Soundtracks"
+                          ? albumMap[album]
+                          : album
+                      }
                       song={song}
                       lyric={songLyric.lyric}
                       next={songLyric.next}
@@ -77,8 +99,8 @@ export default function QueriedLyrics({
           )}
       </div>
       <div className={mobile ? "totalResults-mobile" : "totalResults"}>
-        Found {occurrences} usage{occurrences === 1 ? "" : "s"} in {songs}{" "}
-        song{songs === 1 ? "" : "s"}
+        Found {occurrences} usage{occurrences === 1 ? "" : "s"} in {songs} song
+        {songs === 1 ? "" : "s"}{selectedAlbums.length > 0 ? " from selected albums" : ""}
       </div>
     </div>
   );

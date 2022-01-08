@@ -7,11 +7,13 @@ const mobile = isMobile();
 
 type InputBoxProps = {
   submitHandler: (string) => void,
+  filterButtonHandler: () => void,
   queryString: string,
 };
 
 export default function InputBox({
   submitHandler,
+  filterButtonHandler,
   queryString,
 }: InputBoxProps): React$MixedElement {
   const [query, setQuery] = useState<string>(queryString);
@@ -30,18 +32,25 @@ export default function InputBox({
   };
 
   return (
-    <div className="InputBox">
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input
-            className={mobile ? "queryBox queryBox-mobile" : "queryBox"}
-            type="text"
-            value={query}
-            onChange={handleChange}
-          />
-        </label>
-        <input className="submitButton" type="submit" value="➔" />
-      </form>
-    </div>
+    <>
+      <div className="InputBox">
+        <form onSubmit={handleSubmit}>
+          <label>
+            <input
+              className={mobile ? "queryBox queryBox-mobile" : "queryBox"}
+              type="text"
+              value={query}
+              onChange={handleChange}
+            />
+          </label>
+          <input className="submitButton" type="submit" value="➔" />
+        </form>
+        <div className="filterModalButtonWrapper">
+          <span className="filterModalButton" onClick={filterButtonHandler}>
+            Filter by album
+          </span>
+        </div>
+      </div>
+    </>
   );
 }

@@ -90,8 +90,28 @@ export const boldQuery = (lyric: string, query: string): string => {
 };
 
 export const URL_QUERY_PARAM = 'query'
+export const URL_ALBUM_PARAM = 'album'
 
 export const getURLQueryStrings = (): Array<string> => {
   const currentURL = new URL(window.location);
   return currentURL.searchParams.getAll(URL_QUERY_PARAM);
+}
+
+export const getURLAlbumStrings = (): Array<string> => {
+  const currentURL = new URL(window.location);
+  return currentURL.searchParams.getAll(URL_ALBUM_PARAM);
+}
+
+const albumMap = require("../taylor-swift-lyrics/album_map.json");
+
+export const getAlbums = (): Array<string> => {
+  const albums = [];
+  for (const album in albumMap) {
+    for (const albumCategory of albumMap[album]) {
+      if (!albums.includes(albumCategory)) {
+        albums.push(albumCategory);
+      }
+    }
+  }
+  return albums;
 }
