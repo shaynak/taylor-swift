@@ -72,7 +72,8 @@ export default function QueriedLyrics({
                 if (
                   isSelectedAlbum(album) &&
                   queries.some(
-                    (query) => containsQuery(songLyric.lyric, query) >= 0
+                    (query) =>
+                      containsQuery(songLyric.lyric, query)["start"] >= 0
                   ) &&
                   album !== "Uncategorized"
                 ) {
@@ -100,7 +101,8 @@ export default function QueriedLyrics({
       </div>
       <div className={mobile ? "totalResults-mobile" : "totalResults"}>
         Found {occurrences} usage{occurrences === 1 ? "" : "s"} in {songs} song
-        {songs === 1 ? "" : "s"}{selectedAlbums.length > 0 ? " from selected albums" : ""}
+        {songs === 1 ? "" : "s"}
+        {selectedAlbums.length > 0 ? " from selected albums" : ""}
       </div>
     </div>
   );

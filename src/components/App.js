@@ -45,6 +45,7 @@ function App(): React$MixedElement {
     if (queries.length > 0) {
       searchHandler(queries.join(","));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(albumFilters)]);
 
   history.listen((location, action) => {
@@ -96,7 +97,11 @@ function App(): React$MixedElement {
         filterButtonHandler={filterButtonHandler}
         queryString={queries.join(", ")}
       />
-      {queries.length > 0 ? <QueriedLyrics queries={queries} selectedAlbums={albumFilters} /> : null}
+      {queries.length > 0 ? (
+        <QueriedLyrics queries={queries} selectedAlbums={albumFilters} />
+      ) : (
+        <div className="tips">New: Use a * to do wildcard search!</div>
+      )}
       <InfoButton handler={infoButtonHandler}></InfoButton>
     </div>
   );

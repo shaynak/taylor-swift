@@ -1,5 +1,10 @@
 // @flow
 
+type QueryMatch = {
+  start: number,
+  length: number,
+};
+
 // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
 const escapeRegExp = (str: string): string => {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
@@ -21,30 +26,44 @@ const cleanLyric = (lyric: string): string => {
   return cleaned_lyric;
 };
 
-export const containsQuery = (lyric: string, query: string): number => {
+export const containsQuery = (lyric: string, query: string): QueryMatch => {
   query = cleanLyric(query.toLowerCase());
   query = query.replace(/\u00e9/g, "e");
   lyric = lyric.replace(/\u00e9/g, "e");
+
+  const query_sections = query.split("*").map(escapeRegExp);
+  const inner_regexp = query_sections.join("\\w*");
   const regex = new RegExp(
-    `([\\(\\)\\.\\-?!;:,\\s\u2026"]|^)${escapeRegExp(
-      query
-    )}([\\(\\)\\.\\-?!;:,\\s\u2026"]|$)`
+    `([\\(\\)\\.\\-?!;:,\\s\u2026"]|^)${inner_regexp}([\\(\\)\\.\\-?!;:,\\s\u2026"]|$)`
   );
-  return cleanLyric(lyric.toLowerCase()).search(regex);
+
+  const match = cleanLyric(lyric.toLowerCase()).match(regex);
+  // Adding length of the first capturing group (1 or 0) to `start` so it starts at word
+  const start = match != null ? match.index + match[1].length : -1;
+  // Subtracting capturing group lengths to make sure only length of word is sent
+  const length =
+    match != null ? match[0].length - (match[1].length + match[2].length) : -1;
+  return {
+    start,
+    length,
+  };
+};
+
+export const getQueryLength = (query: string): number => {
+  return query.replace("*", "").length;
 };
 
 export const queriesFound = (lyric: string, query: string): number => {
   lyric = cleanLyric(lyric);
   query = cleanLyric(query);
-  let start: number;
   let found = 0;
   do {
-    start = containsQuery(lyric, query);
+    let { start, length } = containsQuery(lyric, query);
     if (start === -1) {
       return found;
     }
     found += 1;
-    lyric = lyric.substring(start + query.length);
+    lyric = lyric.substring(start + length);
   } while (lyric.length > 0);
   return found;
 };
@@ -59,25 +78,19 @@ export const isMobile = (): boolean => {
 export const boldQueries = (lyric: string, queries: Array<string>): string => {
   lyric = cleanLyric(lyric);
   return queries.reduce(boldQuery, lyric);
-}
+};
 
 export const boldQuery = (lyric: string, query: string): string => {
   query = cleanLyric(query);
-  let start: number, end: number;
+  let end: number;
   let boldedLyric = "";
   do {
-    start = containsQuery(lyric, query);
+    let { start, length } = containsQuery(lyric, query);
     if (start === -1) {
       return boldedLyric + lyric;
     }
-    end = start + query.length;
-    // If not at the beginning, we need to shift start and end
-    // because containsQuery will return the index of the space
-    // before the start of the query
-    if (lyric.toLowerCase().charAt(0) !== query.toLowerCase().charAt(0)) {
-      start += 1;
-      end += 1;
-    }
+    end = start + length;
+
     boldedLyric =
       boldedLyric +
       lyric.substring(0, start) +
@@ -89,17 +102,15 @@ export const boldQuery = (lyric: string, query: string): string => {
   return boldedLyric;
 };
 
-export const URL_QUERY_PARAM = 'query'
-export const URL_ALBUM_PARAM = 'album'
+export const URL_QUERY_PARAM = "query";
+export const URL_ALBUM_PARAM = "album";
 
 export const getURLQueryStrings = (): Array<string> => {
   const currentURL = new URL(window.location);
   return currentURL.searchParams.getAll(URL_QUERY_PARAM);
-}
+};
 
 export const getURLAlbumStrings = (): Array<string> => {
   const currentURL = new URL(window.location);
   return currentURL.searchParams.getAll(URL_ALBUM_PARAM);
-}
-
-const albumMap = require("../taylor-swift-lyrics/album_map.json");
+};

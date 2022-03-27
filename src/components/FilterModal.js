@@ -1,7 +1,7 @@
 // @flow
 import "../style/FilterModal.css";
 import { isMobile } from "./utils";
-import { ModalText, ALBUMS } from "./constants";
+import { ALBUMS } from "./constants";
 import React, { useState } from "react";
 import FilterSelection from "./FilterSelection";
 
@@ -39,12 +39,6 @@ export default function FilterModal({
         selectedAlbums.filter((selectedAlbum) => selectedAlbum !== album)
       );
     }
-  };
-
-  const handleSubmit = (event: any) => {
-    setAlbumFilters(selectedAlbums);
-    handler();
-    event.preventDefault();
   };
 
   return (
