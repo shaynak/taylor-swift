@@ -10,7 +10,7 @@ const escapeRegExp = (str: string): string => {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
 };
 
-const cleanLyric = (lyric: string): string => {
+export const cleanLyric = (lyric: string): string => {
   // Replace special quotes with normal quotes
   let cleaned_lyric = lyric.replace(/\u2018|\u2019/g, "'");
   cleaned_lyric = cleaned_lyric.replace(/\u201C|\u201D/g, '"');
@@ -34,7 +34,7 @@ export const containsQuery = (lyric: string, query: string): QueryMatch => {
   const query_sections = query.split("*").map(escapeRegExp);
   const inner_regexp = query_sections.join("\\w*");
   const regex = new RegExp(
-    `([\\(\\)\\.\\-?!;:,\\s\u2026"]|^)${inner_regexp}([\\(\\)\\.\\-?!;:,\\s\u2026"]|$)`
+    `([\\(\\)\\.\\-?!;:,\\s\u2026"]|^'*)${inner_regexp}('*[\\(\\)\\.\\-?!;:,\\s\u2026"]|$)`
   );
 
   const match = cleanLyric(lyric.toLowerCase()).match(regex);
