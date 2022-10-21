@@ -8,7 +8,7 @@ export const ModalText =
   <a href="https://github.com/shaynak/taylor-swift-lyrics">here</a>. \
   Curious about what people are searching? See our \
   <a href="https://shaynak-taylor-swift.goatcounter.com/">analytics</a>! \
-  <br><br>Last updated: 10/07/22. First published 12/28/20.';
+  <br><br>Last updated: 10/21/22. First published 12/28/20.';
 
 // Ordered list of albums for selector - keep in sync with album map
 export const ALBUMS = [
@@ -22,6 +22,7 @@ export const ALBUMS = [
   "Lover",
   "folklore",
   "evermore",
+  "Midnights",
   "Collaborations",
   "Movie Soundtracks"
 ];
