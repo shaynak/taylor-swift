@@ -54,18 +54,22 @@ input {
   transition: 0.5s;
 }
 
-.filterModalButtonWrapper {
-  margin-top: 10px;
-}
-
 .filterModalButton {
   background-color: lavender;
   cursor: pointer;
   transition: 0.5s;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .filterModalButton:hover {
   background-color: white;
   cursor: pointer;
   transition: 0.5s;
+}
+
+.filtersWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
 }

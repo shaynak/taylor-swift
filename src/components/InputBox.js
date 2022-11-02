@@ -8,12 +8,16 @@ const mobile = isMobile();
 type InputBoxProps = {
   submitHandler: (string) => void,
   filterButtonHandler: () => void,
+  setIncludePlurals: (boolean) => void,
+  includePlurals: boolean,
   queryString: string,
 };
 
 export default function InputBox({
   submitHandler,
   filterButtonHandler,
+  setIncludePlurals,
+  includePlurals,
   queryString,
 }: InputBoxProps): React$MixedElement {
   const [query, setQuery] = useState<string>(queryString);
@@ -31,6 +35,10 @@ export default function InputBox({
     event.preventDefault();
   };
 
+  const handlePlurals = (event: any) => {
+    setIncludePlurals(!includePlurals);
+  }
+
   return (
     <>
       <div className="InputBox">
@@ -45,7 +53,8 @@ export default function InputBox({
           </label>
           <input className="submitButton" type="submit" value="➔" />
         </form>
-        <div className="filterModalButtonWrapper">
+        <div className="filtersWrapper">
+        <span className="filterModalButton" onClick={handlePlurals}>{includePlurals ? "Including plurals" : "Not including plurals"}</span>
           <span className="filterModalButton" onClick={filterButtonHandler}>
             Filter by album
           </span>

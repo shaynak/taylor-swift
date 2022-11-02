@@ -1,5 +1,7 @@
 // @flow
-import pluralize from 'pluralize';
+import pluralize from "pluralize";
+
+const PLURAL_EXCEPTIONS = ["hi", "die", "dice", "his"];
 
 type QueryMatch = {
   start: number,
@@ -116,13 +118,15 @@ export const getURLAlbumStrings = (): Array<string> => {
   return currentURL.searchParams.getAll(URL_ALBUM_PARAM);
 };
 
-export const convertQueriesToPlurals = (queries: Array<string>): Array<string> =>{
-  return queries.flatMap(query => {
+export const convertQueriesToPlurals = (
+  queries: Array<string>
+): Array<string> => {
+  return queries.flatMap((query) => {
     const pluralized = pluralize.plural(query);
     const singularized = pluralize.singular(query);
-    if (pluralized === singularized) {
+    if (pluralized === singularized || PLURAL_EXCEPTIONS.includes(query)) {
       return [query];
     }
-    return [pluralized, singularized]
+    return [pluralized, singularized];
   });
-}
+};
