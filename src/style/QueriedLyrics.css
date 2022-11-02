@@ -40,3 +40,20 @@ hr {
   position: absolute;
   margin-top: calc(11% + 34px);
 }
+
+.loading {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  border: 5px solid lavender; /* Light grey */
+  border-top: 5px solid white; /* Blue */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -10,11 +10,13 @@ const mobile = isMobile();
 type QueriedLyricsProps = {
   queries: Array<string>,
   selectedAlbums: Array<string>,
+  isLoading: boolean,
 };
 
 export default function QueriedLyrics({
   queries,
   selectedAlbums,
+  isLoading,
 }: QueriedLyricsProps): React$MixedElement {
   const isSelectedAlbum = (album: string): boolean => {
     if (selectedAlbums.length === 0) {
@@ -56,7 +58,7 @@ export default function QueriedLyrics({
   return (
     <div>
       <div className={mobile ? "QueriedLyrics-mobile" : "QueriedLyrics"}>
-        {Object.keys(lyricsJSON)
+        {isLoading ? <div className="loading"></div> : Object.keys(lyricsJSON)
           .sort((album1, album2) => {
             if (album1 === "Unreleased Songs") {
               return 1;

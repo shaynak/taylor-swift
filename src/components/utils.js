@@ -1,4 +1,5 @@
 // @flow
+import pluralize from 'pluralize';
 
 type QueryMatch = {
   start: number,
@@ -114,3 +115,14 @@ export const getURLAlbumStrings = (): Array<string> => {
   const currentURL = new URL(window.location);
   return currentURL.searchParams.getAll(URL_ALBUM_PARAM);
 };
+
+export const convertQueriesToPlurals = (queries: Array<string>): Array<string> =>{
+  return queries.flatMap(query => {
+    const pluralized = pluralize.plural(query);
+    const singularized = pluralize.singular(query);
+    if (pluralized === singularized) {
+      return [query];
+    }
+    return [pluralized, singularized]
+  });
+}

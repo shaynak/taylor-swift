@@ -12,10 +12,11 @@ import {
   getURLAlbumStrings,
   URL_QUERY_PARAM,
   URL_ALBUM_PARAM,
+  convertQueriesToPlurals
 } from "./utils";
 import { ArtistName } from "./constants";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const mobile = isMobile();
 
@@ -26,9 +27,12 @@ function App(): React$MixedElement {
   );
   const [infoModal, setInfoModal] = useState<boolean>(false);
   const [filterModal, setFilterModal] = useState<boolean>(false);
-  const history = useHistory();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const searchHandler = (query: string) => {
+    setIsLoading(true);
     const queryStrings = query
       .split(",")
       .map((queryString) => queryString.trim())
@@ -37,7 +41,7 @@ function App(): React$MixedElement {
       .map((query) => URL_QUERY_PARAM + "=" + query)
       .concat(albumFilters.map((album) => URL_ALBUM_PARAM + "=" + album))
       .join("&");
-    history.push({ search: URLQueryString });
+    navigate({ search: URLQueryString });
   };
 
   useEffect(() => {
@@ -48,10 +52,11 @@ function App(): React$MixedElement {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(albumFilters)]);
 
-  history.listen((location, action) => {
+  useEffect(() => {
     setQueries(getURLQueryStrings());
     setAlbumFilters(getURLAlbumStrings());
-  });
+    setIsLoading(false);
+  }, [location])
 
   const infoButtonHandler = () => setInfoModal(true);
   const infoModalHandler = () => setInfoModal(false);
@@ -75,7 +80,7 @@ function App(): React$MixedElement {
             onClick={(event) => {
               setQueries([]);
               setAlbumFilters([]);
-              history.push("/");
+              navigate("/");
             }}
           >
             {ArtistName} lyric searcher
@@ -97,10 +102,10 @@ function App(): React$MixedElement {
         filterButtonHandler={filterButtonHandler}
         queryString={queries.join(", ")}
       />
-      {queries.length > 0 ? (
-        <QueriedLyrics queries={queries} selectedAlbums={albumFilters} />
+      { queries.length > 0 ? (
+        <QueriedLyrics queries={convertQueriesToPlurals(queries)} selectedAlbums={albumFilters} isLoading={isLoading}/>
       ) : (
-        <div className="tips">New: Use a * to do wildcard search!</div>
+        <div className="tips">New: We now support plurals! Also, try a wildcard search using * - for example, rain*!</div>
       )}
       <InfoButton handler={infoButtonHandler}></InfoButton>
     </div>
