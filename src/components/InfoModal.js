@@ -39,9 +39,6 @@ export default function InfoModal({
           If you have comments or suggestions, contact me by{" "}
           <a href="mailto:shayna.kothari@berkeley.edu">email</a>!
         </p>
-        <p style={{ fontSize: "12px" }}>
-          (P.S. If you're from Taylor Nation and you're reading this... I would love to be chosen for Verified Fan...)
-        </p>
       </div>
     </div>
   );
