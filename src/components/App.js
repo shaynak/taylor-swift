@@ -113,8 +113,7 @@ function App(): React$MixedElement {
         />
       ) : (
         <div className="tips">
-          New: We now support plurals for most words! Also, try a wildcard search using * - for
-          example, rain*
+          Taylor Swift, if you're reading this, please put Mary's Song on the setlist for 7/28
         </div>
       )}
       <InfoButton handler={infoButtonHandler}></InfoButton>
