@@ -113,7 +113,7 @@ function App(): React$MixedElement {
         />
       ) : (
         <div className="tips">
-          Taylor Swift, if you're reading this, please put Mary's Song on the setlist for 7/28
+          Taylor, if you're reading this, please play Mary's Song on 7/28
         </div>
       )}
       <InfoButton handler={infoButtonHandler}></InfoButton>
