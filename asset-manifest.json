@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/taylor-swift/static/css/main.5c296041.css",
-    "main.js": "/taylor-swift/static/js/main.c5d82a1f.js",
+    "main.js": "/taylor-swift/static/js/main.223be1f0.js",
     "index.html": "/taylor-swift/index.html",
     "main.5c296041.css.map": "/taylor-swift/static/css/main.5c296041.css.map",
-    "main.c5d82a1f.js.map": "/taylor-swift/static/js/main.c5d82a1f.js.map"
+    "main.223be1f0.js.map": "/taylor-swift/static/js/main.223be1f0.js.map"
   },
   "entrypoints": [
     "static/css/main.5c296041.css",
-    "static/js/main.c5d82a1f.js"
+    "static/js/main.223be1f0.js"
   ]
 }
