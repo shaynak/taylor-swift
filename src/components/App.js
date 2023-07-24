@@ -98,6 +98,9 @@ function App(): React$MixedElement {
           </span>
         </div>
       )}
+      {queries.length === 0 ? <div className="tips">
+          Taylor, if you're reading this, please play Mary's Song on 7/28
+        </div> : null}
       <InputBox
         submitHandler={searchHandler}
         filterButtonHandler={filterButtonHandler}
@@ -111,11 +114,9 @@ function App(): React$MixedElement {
           selectedAlbums={albumFilters}
           isLoading={isLoading}
         />
-      ) : (
-        <div className="tips">
-          Taylor, if you're reading this, please play Mary's Song on 7/28
-        </div>
-      )}
+      ) : 
+        null
+      }
       <InfoButton handler={infoButtonHandler}></InfoButton>
     </div>
   );
