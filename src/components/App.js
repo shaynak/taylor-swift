@@ -99,7 +99,7 @@ function App(): React$MixedElement {
         </div>
       )}
       {queries.length === 0 ? <div className="tips">
-          Taylor, if you're reading this, please play Mary's Song on 7/28
+          Tip: you can use a * for wildcard search! Try <i>rain*</i>
         </div> : null}
       <InputBox
         submitHandler={searchHandler}
