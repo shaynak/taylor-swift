@@ -8,7 +8,8 @@ export const ModalText =
   <a href="https://github.com/shaynak/taylor-swift-lyrics">here</a>. \
   Curious about what people are searching? See our \
   <a href="https://shaynak-taylor-swift.goatcounter.com/">analytics</a>! \
-  <br><br>Last updated: 7/10/23. First published 12/28/20.';
+  <br><br>Lyrics will generally be updated within 24 hours of an album release. \
+  <br><br>Last updated: 10/16/23. First published 12/28/20.';
 
 // Ordered list of albums for selector - keep in sync with album map
 export const ALBUMS = [
