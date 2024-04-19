@@ -9,7 +9,7 @@ export const ModalText =
   Curious about what people are searching? See our \
   <a href="https://shaynak-taylor-swift.goatcounter.com/">analytics</a>! \
   <br><br>Lyrics will generally be updated within 24 hours of an album release. \
-  <br><br>Last updated: 11/2/23. First published 12/28/20.';
+  <br><br>Last updated: 4/18/24. First published 12/28/20.';
 
 // Ordered list of albums for selector - keep in sync with album map
 export const ALBUMS = [
@@ -24,6 +24,7 @@ export const ALBUMS = [
   "folklore",
   "evermore",
   "Midnights",
+  "The Tortured Poets Department",
   "Collaborations",
   "Movie Soundtracks"
 ];
