@@ -34,19 +34,19 @@ export default function QueriedLyrics({
   const countOccurrences = (): { occurrences: number, songs: number } => {
     let found = 0;
     let songs = 0;
-    for (const query of queries) {
-      for (const album in lyricsJSON) {
-        if (album !== "Uncategorized" && isSelectedAlbum(album)) {
-          for (const song in lyricsJSON[album]) {
-            let foundInSong = false;
+    for (const album in lyricsJSON) {
+      if (album !== "Uncategorized" && isSelectedAlbum(album)) {
+        for (const song in lyricsJSON[album]) {
+          let foundInSong = false;
+          for (const query of queries) {
             for (let i = 0; i < lyricsJSON[album][song].length; i++) {
               const songLyric = lyricsJSON[album][song][i];
               const timesFound = queriesFound(songLyric.lyric, query);
               found += songLyric.multiplicity * timesFound;
               foundInSong = foundInSong || timesFound > 0;
             }
-            songs += foundInSong ? 1 : 0;
           }
+          songs += foundInSong ? 1 : 0;
         }
       }
     }
